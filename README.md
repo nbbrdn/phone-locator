@@ -27,29 +27,29 @@ git clone https://github.com/nbbrdn/phone-locator
 cd phone-locator
 ```
 
-2. Install dependencies:
+2. Copy `.env.example` to the `.env` and change default parameters:
 
 ```bash
-pip install -r requirements.txt
+cp .env.example .env
 ```
 
-3. Apply migrations:
-
+3. Build and run Docker containers:
 ```bash
-python manage.py migrate
+docker-compose up -d --build
 ```
 
-4. Run the development server:
-
+4. Apply migrations:
 ```bash
-python manage.py runserver
+docker-compose exec web python manage.py migrate
 ```
 
-5. Visit http://127.0.0.1:8000/ in your web browser.
+5. Download DEF codes
+
+6. Enable the daily DEF codes download task
 
 ## Usage
 
-1. Open the application in your web browser.
+1. Open the application in your web browser (http://127.0.0.1:8000/).
 2. Enter a valid 11-digit phone number in the provided form.
 3. Click the "Search" button to retrieve information about the mobile operator and region associated with the phone number.
 

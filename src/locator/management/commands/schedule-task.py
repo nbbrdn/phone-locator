@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from django_celery_beat.models import PeriodicTask, IntervalSchedule
+from django_celery_beat.models import IntervalSchedule, PeriodicTask
 
 
 class Command(BaseCommand):

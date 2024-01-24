@@ -1,6 +1,8 @@
-from .models import DEFCode
-import requests
 import csv
+
+import requests
+
+from .models import DEFCode
 
 
 def fetch_def_codes():

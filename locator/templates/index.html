@@ -1,25 +1,31 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Phone Info Lookup</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %}Phone Info Lookup{% endblock title %}
+
+{% block stylesheets %}
+{{ block.super }}
+{% endblock stylesheets %}
+
+{% block content %}
     <h2>Phone Info Lookup</h2>
     <form method="POST" onsubmit="return validatePhoneNumber()">
         {% csrf_token %}
         {{ form }}
         <button type="submit">Search</button>
     </form>
-    <script>
-        function validatePhoneNumber() {
-            let phoneNumber = document.getElementById("id_phone_number").value;
-            let phoneNumberPattern = /^\d{11}$/;
-            if (!phoneNumberPattern.test(phoneNumber)) {
-                alert("Invalid phone number. Please enter 11 digits.");
-                return false;
-            }
-            return true;
+{% endblock content %}
+
+{% block javascript %}
+{{ block.super}}
+<script>
+    function validatePhoneNumber() {
+        let phoneNumber = document.getElementById("id_phone_number").value;
+        let phoneNumberPattern = /^\d{11}$/;
+        if (!phoneNumberPattern.test(phoneNumber)) {
+            alert("Invalid phone number. Please enter 11 digits.");
+            return false;
         }
-    </script>
-</body>
-</html>
+        return true;
+    }
+</script>
+{% endblock javascript %}

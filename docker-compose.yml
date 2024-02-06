@@ -19,6 +19,11 @@ services:
       - POSTGRES_USER=app
       - POSTGRES_PASSWORD=app
       - POSTGRES_DB=app
-
+  
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+      
 volumes:
   postgres_data:

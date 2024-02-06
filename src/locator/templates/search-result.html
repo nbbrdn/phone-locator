@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}Search Result{% endblock title %}
+
+{% block content %}
+<h2>Search Result</h2>
+    <p>Operator: {{ operator }}</p>
+    <p>Region: {{ region }}</p>
+    <a href="{% url 'index' %}">Back to Home</a>
+{% endblock %}

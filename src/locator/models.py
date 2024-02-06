@@ -6,7 +6,7 @@ class DEFCode(models.Model):
     start_range = models.IntegerField()
     end_range = models.IntegerField()
     operator = models.CharField(max_length=255)
-    region = models.CharField(max_length=255)
+    region = models.CharField(max_length=500)
 
     class Meta:
         indexes = (models.Index(fields=["code", "start_range", "end_range"]),)

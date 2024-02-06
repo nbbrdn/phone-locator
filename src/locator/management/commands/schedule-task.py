@@ -5,7 +5,7 @@ from django_celery_beat.models import IntervalSchedule, PeriodicTask
 class Command(BaseCommand):
     def handle(self, *args, **options):
         interval, _ = IntervalSchedule.objects.get_or_create(
-            every=1, period=IntervalSchedule.DAYS
+            every=1, period=IntervalSchedule.HOURS
         )
 
         PeriodicTask.objects.create(

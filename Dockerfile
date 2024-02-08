@@ -7,6 +7,8 @@ ENV PYTHONUNBUFFERED 1
 
 RUN apt-get update && apt-get install -y netcat-traditional
 
+RUN adduser --disabled-password --no-create-home django-user
+
 RUN pip install --upgrade pip
 COPY ./requirements.txt .
 RUN pip install -r requirements.txt
@@ -17,5 +19,7 @@ RUN sed -i 's/\r$//g' /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
 COPY ./src .
+
+USER django-user
 
 ENTRYPOINT ["entrypoint.sh"]

@@ -23,7 +23,11 @@ def index(request):
                 return render(
                     request,
                     "search-result.html",
-                    {"operator": operator, "region": region},
+                    {
+                        "phone_number": phone_number,
+                        "operator": operator,
+                        "region": region,
+                    },
                 )
             except DEFCode.DoesNotExist:
                 return render(template_name="404.html", status=404, request=request)

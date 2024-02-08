@@ -24,6 +24,29 @@ services:
     image: redis
     ports:
       - 6379:6379
-      
+
+  celery:
+    build: .
+    user: django-user
+    command: ["celery", "-A", "phone_locator", "worker", "--loglevel=info"]
+    volumes:
+      - ./src/:/usr/src/app/
+    env_file:
+      - ./.env
+    depends_on:
+      - web
+
+  
+  celerybeat:
+    build: .
+    user: django-user
+    command: ["celery", "-A", "phone_locator", "beat", "--loglevel=info", "--scheduler", "django_celery_beat.schedulers:DatabaseScheduler"]
+    volumes:
+      - ./src/:/usr/src/app/
+    env_file:
+      - ./.env
+    depends_on:
+      - web
+
 volumes:
   postgres_data:

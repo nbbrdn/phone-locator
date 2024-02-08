@@ -34,24 +34,56 @@ cp .env.example .env
 ```
 
 3. Build and run Docker containers:
+
 ```bash
 docker-compose up -d --build
 ```
 
 4. Apply migrations:
+
 ```bash
 docker-compose exec web python manage.py migrate
 ```
 
-5. Download DEF codes
+5. Enable the daily DEF codes download task:
 
-6. Enable the daily DEF codes download task
+```bash
+docker-compose exec web python manage.py schedule-task
+```
+
+You can also fetch DEF codes manualy, using the Django command:
+
+```bash
+docker-compose exec web python manage.py load-def-codes
+```
 
 ## Usage
+
+### Web UI
 
 1. Open the application in your web browser (http://127.0.0.1:8000/).
 2. Enter a valid 11-digit phone number in the provided form.
 3. Click the "Search" button to retrieve information about the mobile operator and region associated with the phone number.
+
+### REST API
+
+Just make a GET request to the service enpoint `http://localhost:8000/api/phone-info/{your-phone-number}`:
+
+```bash
+curl --location 'http://localhost:8000/api/phone-info/{your-phone-number}'
+```
+
+You'll get a json response:
+
+```json
+{
+  "phone_number": "9**********",
+  "operator": "ПАО \"МегаФон\"",
+  "region": "Хабаровский край"
+}
+```
+
+_Note:_ API endpoint receives the phone number in MSISDN format only.
 
 ## Contributing
 
